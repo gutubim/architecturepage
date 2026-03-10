@@ -9,7 +9,7 @@
         :root {
             --primario: #1a1a1a;
             --secundario: #f4f4f4;
-            --acento: #ffffff; /* Cambio a Blanco */
+            --acento: #ffffff;
             --texto: #333;
         }
 
@@ -17,7 +17,6 @@
 
         body { color: var(--texto); line-height: 1.6; background: #fff; overflow-x: hidden; }
 
-        /* Header */
         header {
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
@@ -37,7 +36,7 @@
         .btn {
             padding: 12px 30px;
             background: var(--acento);
-            color: var(--primario); /* Texto oscuro para que resalte en el botón blanco */
+            color: var(--primario);
             text-decoration: none;
             transition: 0.3s;
             text-transform: uppercase;
@@ -46,21 +45,24 @@
         }
         .btn:hover { background: transparent; color: var(--acento); }
 
-        /* Secciones */
         .section { padding: 80px 10%; text-align: center; }
 
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 30px; 
             margin-top: 40px; 
         }
 
-        .card { padding: 30px; background: var(--secundario); transition: 0.3s; }
-        /* Los iconos ahora son gris oscuro/negro para resaltar sobre el fondo claro ya que el acento es blanco */
-        .card i { font-size: 2rem; color: var(--primario); margin-bottom: 15px; }
+        .card { padding: 40px 25px; background: var(--secundario); transition: 0.3s; text-align: left; }
+        .card i { font-size: 2rem; color: var(--primario); margin-bottom: 15px; display: block; text-align: center; }
+        .card h3 { text-align: center; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Estilo para el listado solicitado */
+        .card ul { margin-top: 15px; list-style: none; font-size: 0.9rem; color: #555; }
+        .card ul li { margin-bottom: 5px; position: relative; padding-left: 20px; }
+        .card ul li::before { content: "•"; color: var(--primario); position: absolute; left: 0; font-weight: bold; }
 
-        /* Galería */
         .portfolio-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -70,7 +72,6 @@
         .portfolio-item { height: 300px; background-size: cover; background-position: center; transition: 0.5s; filter: grayscale(100%); }
         .portfolio-item:hover { filter: grayscale(0%); cursor: pointer; }
 
-        /* SECCIÓN TÉCNICA */
         .tech-section { background: #111; color: #fff; padding: 80px 10%; text-align: center; }
         .tech-grid { 
             display: grid; 
@@ -83,7 +84,6 @@
         .tech-card h4 { color: var(--acento); text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; }
         .tech-card p { font-size: 0.85rem; color: #bbb; }
 
-        /* Footer */
         footer { background: var(--primario); color: white; padding: 50px 10%; text-align: center; }
         .socials { margin-top: 20px; }
         .socials a { color: white; font-size: 1.5rem; margin: 0 10px; }
@@ -107,15 +107,23 @@
         <div class="grid">
             <div class="card">
                 <i class="fas fa-pencil-ruler"></i>
-                <h3>Diseño Arquitectónico</h3>
+                <h3>Diseño</h3>
                 <p>Planos detallados y modelado 3D de alta precisión.</p>
+                <ul>
+                    <li>Diseño arquitectónico</li>
+                    <li>Diseño estructural</li>
+                    <li>Diseño de instalaciones eléctricas</li>
+                    <li>Diseño de instalaciones hidrosanitarias</li>
+                </ul>
             </div>
-            <div class="card">
+
+            <div class="card" style="text-align: center;">
                 <i class="fas fa-hard-hat"></i>
                 <h3>Construcción</h3>
                 <p>Gestión integral de obra con los más altos estándares.</p>
             </div>
-            <div class="card">
+
+            <div class="card" style="text-align: center;">
                 <i class="fas fa-couch"></i>
                 <h3>Interiorismo</h3>
                 <p>Optimización de espacios y selección de materiales premium.</p>
