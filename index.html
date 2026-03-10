@@ -5,62 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estudio de Arquitectura | Diseño & Construcción</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<style>
-    /* Importamos una fuente robusta similar si el sistema no tiene Helvetica Black */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
+    <style>
+        :root {
+            --primario: #1a1a1a;
+            --secundario: #f4f4f4;
+            --acento: #c5a059; /* Tono dorado/arena elegante */
+            --texto: #333;
+        }
 
-    :root {
-        --primario: #1a1a1a;
-        --secundario: #f4f4f4;
-        --acento: #c5a059;
-        --texto: #333;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', sans-serif; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { color: var(--texto); line-height: 1.6; background: #fff; }
 
-    body { 
-        color: var(--texto); 
-        line-height: 1.6; 
-        background: #fff; 
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-    }
+        /* Header */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
 
-    /* Ajuste de Fuente Principal */
-    header h1 { 
-        /* Prioriza Helvetica Black / Heavy con peso 900 */
-        font-family: "Helvetica Black", "Helvetica Neue", "Inter", sans-serif;
-        font-weight: 900; 
-        font-size: 4.5rem; /* Aumenté un poco el tamaño para lucir el peso */
-        letter-spacing: -2px; /* Un poco de tracking negativo para un look más moderno */
-        text-transform: uppercase; 
-        margin-bottom: 1rem;
-        line-height: 1.1;
-    }
+        header h1 { font-size: 3.5rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 1rem; }
+        header p { font-size: 1.2rem; max-width: 600px; margin-bottom: 2rem; }
 
-    /* Resto de estilos (Mantener igual o reemplazar todo) */
-    header {
-        height: 100vh;
-        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070') no-repeat center center/cover;
-        display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 20px;
-    }
+        .btn {
+            padding: 12px 30px;
+            background: var(--acento);
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .btn:hover { background: #b08d4a; }
 
-    header p { font-size: 1.2rem; max-width: 600px; margin-bottom: 2rem; font-weight: 400; }
+        /* Servicios */
+        .section { padding: 80px 10% ; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { padding: 30px; background: var(--secundario); transition: 0.3s; }
+        .card i { font-size: 2rem; color: var(--acento); margin-bottom: 15px; }
+        .card:hover { transform: translateY(-10px); background: #eee; }
 
-    .btn { padding: 12px 30px; background: var(--acento); color: white; text-decoration: none; transition: 0.3s; text-transform: uppercase; font-weight: 900; }
-    .section { padding: 80px 10%; text-align: center; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-    .card { padding: 30px; background: var(--secundario); transition: 0.3s; }
-    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; margin-top: 20px; }
-    .portfolio-item { height: 300px; background-size: cover; background-position: center; filter: grayscale(100%); transition: 0.5s; }
-    .portfolio-item:hover { filter: grayscale(0%); }
-    footer { background: var(--primario); color: white; padding: 50px 10%; text-align: center; }
-</style>
+        /* Galería */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; margin-top: 20px; }
+        .portfolio-item { height: 300px; background-size: cover; background-position: center; transition: 0.5s; filter: grayscale(100%); }
+        .portfolio-item:hover { filter: grayscale(0%); cursor: pointer; }
+
+        /* Contacto */
+        footer { background: var(--primario); color: white; padding: 50px 10% ; text-align: center; }
+        .socials { margin-top: 20px; }
+        .socials a { color: white; font-size: 1.5rem; margin: 0 10px; transition: 0.3s; }
+        .socials a:hover { color: var(--acento); }
+    </style>
 </head>
 <body>
 
     <header>
-        <h1>Integra arquitectos</h1>
+        <h1>Arquitectura Vanguardista</h1>
         <p>Transformamos ideas en estructuras sólidas y espacios que inspiran.</p>
         <a href="#contacto" class="btn">Empezar Proyecto</a>
     </header>
@@ -110,4 +117,3 @@
 
 </body>
 </html>
-
