@@ -9,17 +9,17 @@
         :root {
             --primario: #1a1a1a;
             --secundario: #f4f4f4;
-            --acento: #c5a059; /* Tono dorado/arena elegante */
+            --acento: #c5a059;
             --texto: #333;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', sans-serif; }
 
-        body { color: var(--texto); line-height: 1.6; background: #fff; }
+        body { color: var(--texto); line-height: 1.6; background: #fff; overflow-x: hidden; }
 
-        /* Header */
+        /* Hero Section Adaptable */
         header {
-            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070') no-repeat center center/cover;
             display: flex;
@@ -28,73 +28,99 @@
             align-items: center;
             text-align: center;
             color: white;
-            padding: 0 20px;
+            padding: 20px;
         }
 
-        header h1 { font-size: 3.5rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 1rem; }
-        header p { font-size: 1.2rem; max-width: 600px; margin-bottom: 2rem; }
+        header h1 { 
+            font-size: clamp(2rem, 8vw, 4rem); /* Tamaño fluido según pantalla */
+            letter-spacing: 5px; 
+            text-transform: uppercase; 
+            margin-bottom: 1rem; 
+        }
+        header p { font-size: clamp(1rem, 3vw, 1.2rem); max-width: 600px; margin-bottom: 2rem; }
 
         .btn {
-            padding: 12px 30px;
+            padding: 15px 40px;
             background: var(--acento);
             color: white;
             text-decoration: none;
             transition: 0.3s;
             text-transform: uppercase;
             font-weight: bold;
+            display: inline-block;
         }
-        .btn:hover { background: #b08d4a; }
 
-        /* Servicios */
-        .section { padding: 80px 10% ; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-        .card { padding: 30px; background: var(--secundario); transition: 0.3s; }
-        .card i { font-size: 2rem; color: var(--acento); margin-bottom: 15px; }
-        .card:hover { transform: translateY(-10px); background: #eee; }
+        /* Contenedores Flexibles */
+        .section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; text-align: center; }
 
-        /* Galería */
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; margin-top: 20px; }
-        .portfolio-item { height: 300px; background-size: cover; background-position: center; transition: 0.5s; filter: grayscale(100%); }
-        .portfolio-item:hover { filter: grayscale(0%); cursor: pointer; }
+        /* Grid de Servicios */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            margin-top: 40px; 
+        }
+        .card { padding: 40px 20px; background: var(--secundario); border-radius: 4px; }
+        .card i { font-size: 2.5rem; color: var(--acento); margin-bottom: 15px; }
 
-        /* Contacto */
-        footer { background: var(--primario); color: white; padding: 50px 10% ; text-align: center; }
-        .socials { margin-top: 20px; }
-        .socials a { color: white; font-size: 1.5rem; margin: 0 10px; transition: 0.3s; }
-        .socials a:hover { color: var(--acento); }
+        /* Galería Responsiva */
+        .portfolio-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 15px; 
+            margin-top: 40px; 
+        }
+        .portfolio-item { 
+            height: 350px; 
+            background-size: cover; 
+            background-position: center; 
+            transition: 0.4s; 
+            cursor: pointer;
+        }
+
+        /* Ajustes para Móviles (Media Queries) */
+        @media (max-width: 768px) {
+            .section { padding: 50px 20px; }
+            .portfolio-item { height: 250px; } /* Imágenes un poco más cortas en móvil */
+            header { background-attachment: scroll; } /* Mejora rendimiento en móviles */
+        }
+
+        footer { background: var(--primario); color: white; padding: 60px 20px; text-align: center; }
+        .socials { margin: 25px 0; }
+        .socials a { color: white; font-size: 1.8rem; margin: 0 15px; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Integra Arquitectura</h1>
-        <p>Transformamos ideas en estructuras sólidas y espacios que inspiran.</p>
-        <a href="#contacto" class="btn">Empezar Proyecto</a>
+        <h1>Arquitectura Vanguardista</h1>
+        <p>Expertos en diseño residencial y comercial de alta complejidad.</p>
+        <a href="#contacto" class="btn">Contáctanos</a>
     </header>
 
     <section class="section">
-        <h2>Nuestros Servicios</h2>
+        <h2>Servicios Especializados</h2>
         <div class="grid">
             <div class="card">
-                <i class="fas fa-pencil-ruler"></i>
-                <h3>Diseño Arquitectónico</h3>
-                <p>Planos detallados y modelado 3D de alta precisión.</p>
+                <i class="fas fa-layer-group"></i>
+                <h3>Modelado BIM</h3>
+                <p>Coordinación de proyectos complejos con flujos de trabajo avanzados.</p>
             </div>
             <div class="card">
-                <i class="fas fa-hard-hat"></i>
-                <h3>Construcción</h3>
-                <p>Gestión integral de obra con los más altos estándares.</p>
+                <i class="fas fa-city"></i>
+                <h3>Urbanismo</h3>
+                <p>Planificación de espacios que integran estética y funcionalidad urbana.</p>
             </div>
             <div class="card">
-                <i class="fas fa-couch"></i>
-                <h3>Interiorismo</h3>
-                <p>Optimización de espacios y selección de materiales premium.</p>
+                <i class="fas fa-leaf"></i>
+                <h3>Sustentabilidad</h3>
+                <p>Diseños optimizados para el ahorro energético y bajo impacto ambiental.</p>
             </div>
         </div>
     </section>
 
-    <section class="section" style="background: var(--secundario);">
-        <h2>Proyectos Recientes</h2>
+    <section class="section" style="max-width: 100%; background: #fafafa;">
+        <h2>Portafolio de Obra</h2>
         <div class="portfolio-grid">
             <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800');"></div>
             <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800');"></div>
@@ -103,18 +129,14 @@
     </section>
 
     <footer id="contacto">
-        <h2>¿Listo para construir?</h2>
-        <p>Contáctanos para una asesoría personalizada</p>
-        <br>
-        <p>info@tuempresa.com | +52 55 1234 5678</p>
+        <h2>Hablemos de tu próximo proyecto</h2>
         <div class="socials">
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
             <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">© 2026 Empresa de Arquitectura. Todos los derechos reservados.</p>
+        <p>Proyectos que trascienden el plano.</p>
     </footer>
 
 </body>
 </html>
-
