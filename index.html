@@ -13,6 +13,8 @@
             --acento: #ffffff;
             --texto: #333;
             --whatsapp: #25d366;
+            --facebook: #1877f2;
+            --instagram: #e4405f;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -71,7 +73,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.8);
-            display: none; /* Oculto por defecto */
+            display: none; 
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -106,26 +108,26 @@
             font-family: 'Lato', sans-serif;
         }
 
-        /* --- BOTONES FLOTANTES --- */
+        /* --- BOTONES FLOTANTES AMPLIADOS --- */
         .floating-contact {
             position: fixed;
             bottom: 30px;
             right: 30px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             z-index: 999;
         }
 
         .float-btn {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 25px;
+            font-size: 22px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: 0.3s;
             text-decoration: none;
@@ -133,9 +135,12 @@
 
         .float-btn.ws { background-color: var(--whatsapp); }
         .float-btn.tel { background-color: var(--primario); }
-        .float-btn:hover { transform: scale(1.1); }
+        .float-btn.fb { background-color: var(--facebook); }
+        .float-btn.ig { background-color: var(--instagram); }
+        
+        .float-btn:hover { transform: scale(1.1); filter: brightness(1.1); }
 
-        /* Estilos existentes que proporcionaste */
+        /* Estilos de secciones */
         .section { padding: 80px 10%; text-align: center; }
         h2 { font-size: 3rem; margin-bottom: 20px; text-transform: uppercase; }
 
@@ -269,12 +274,19 @@
             .project-image { height: 300px; }
             .portfolio-overlay h3 { font-size: 2.5rem; }
             .modal-content { padding: 20px; }
+            .floating-contact { right: 15px; bottom: 15px; }
         }
     </style>
 </head>
 <body>
 
     <div class="floating-contact">
+        <a href="https://facebook.com/tupagina" class="float-btn fb" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com/tuperfil" class="float-btn ig" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
         <a href="https://wa.me/525512345678" class="float-btn ws" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
@@ -431,7 +443,6 @@
     </footer>
 
     <script>
-        // LÓGICA DEL CARRUSEL
         let currentSlide = 0;
         const slider = document.getElementById('slider');
         const slides = document.querySelectorAll('.project-panel');
@@ -444,7 +455,6 @@
             slider.style.transform = `translateX(${offset}%)`;
         }
 
-        // LÓGICA DEL MODAL
         const modal = document.getElementById('modalForm');
         const btnOpen = document.getElementById('openModal');
         const btnClose = document.getElementById('closeModal');
