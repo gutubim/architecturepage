@@ -30,11 +30,19 @@
             padding: 20px;
         }
 
-        /* Estilo para tu logo PNG */
+        /* Logo Doble Tamaño en el Header */
         .logo-header {
-            max-width: 200px; /* Ajusta este tamaño según necesites */
+            max-width: 400px; /* El doble del tamaño anterior */
+            height: auto;
+            margin-bottom: 25px;
+        }
+
+        /* Logo en el Footer */
+        .logo-footer {
+            max-width: 150px;
             height: auto;
             margin-bottom: 20px;
+            opacity: 0.9;
         }
 
         header h1 { font-size: clamp(2.5rem, 7vw, 3.5rem); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 1rem; }
@@ -97,6 +105,7 @@
         @media (max-width: 600px) {
             .section, .tech-section { padding: 60px 5%; }
             header h1 { letter-spacing: 2px; }
+            .logo-header { max-width: 250px; } /* Ajuste para que no sea muy grande en móvil */
         }
     </style>
 </head>
@@ -180,6 +189,7 @@
     </section>
 
     <footer id="contacto">
+        <img src="logo.png" alt="Logo Integra Arquitectos" class="logo-footer">
         <h2>¿Listo para construir?</h2>
         <p>Contáctanos para una asesoría personalizada</p>
         <br>
