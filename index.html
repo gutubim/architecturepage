@@ -84,7 +84,6 @@
             max-width: 1000px;
             margin: 40px auto 0;
             overflow: hidden;
-            background: #eee;
         }
 
         .slider {
@@ -94,9 +93,45 @@
 
         .portfolio-item {
             min-width: 100%;
-            height: 500px;
+            height: 550px;
             background-size: cover;
             background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Capa de Gris y Título */
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(40, 40, 40, 0.7); /* Filtro gris/oscuro */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.4s ease;
+            z-index: 1;
+        }
+
+        .portfolio-overlay h3 {
+            color: white;
+            font-size: 4rem;
+            text-transform: uppercase;
+            transition: 0.4s ease;
+        }
+
+        /* Al pasar el mouse: se quita el gris y se oculta el título */
+        .slider-container:hover .portfolio-overlay {
+            background: rgba(0, 0, 0, 0);
+        }
+
+        .slider-container:hover .portfolio-overlay h3 {
+            opacity: 0;
+            transform: scale(1.1);
         }
 
         .slider-btn {
@@ -137,7 +172,8 @@
 
         @media (max-width: 600px) {
             .section, .tech-section { padding: 60px 5%; }
-            .portfolio-item { height: 300px; }
+            .portfolio-item { height: 350px; }
+            .portfolio-overlay h3 { font-size: 2.5rem; }
             .logo-header { max-width: 250px; }
         }
     </style>
@@ -217,9 +253,15 @@
         <div class="slider-container">
             <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
             <div class="slider" id="slider">
-                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200');"></div>
-                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200');"></div>
-                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35097?auto=format&fit=crop&q=80&w=1200');"></div>
+                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200');">
+                    <div class="portfolio-overlay"><h3>Residencia Arcos</h3></div>
+                </div>
+                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200');">
+                    <div class="portfolio-overlay"><h3>Torre Integra</h3></div>
+                </div>
+                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35097?auto=format&fit=crop&q=80&w=1200');">
+                    <div class="portfolio-overlay"><h3>Proyecto CDMX</h3></div>
+                </div>
             </div>
             <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button>
         </div>
@@ -230,7 +272,7 @@
         <h2>¿Listo para construir?</h2>
         <p>Contáctanos para una asesoría personalizada</p>
         <br>
-        <p>info@tuempresa.com | +52 55 1234 5678</p>
+        <p>info@integra-arquitectos.com | +52 55 1234 5678</p>
         <div class="socials">
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
@@ -246,17 +288,11 @@
 
         function moveSlide(direction) {
             currentSlide += direction;
-            
-            if (currentSlide >= slides.length) {
-                currentSlide = 0;
-            } else if (currentSlide < 0) {
-                currentSlide = slides.length - 1;
-            }
-            
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
             const offset = -currentSlide * 100;
             slider.style.transform = `translateX(${offset}%)`;
         }
     </script>
-
 </body>
 </html>
