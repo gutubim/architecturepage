@@ -16,7 +16,6 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Cuerpo del texto con Lato */
         body { 
             color: var(--texto); 
             line-height: 1.6; 
@@ -25,7 +24,6 @@
             font-family: 'Lato', sans-serif; 
         }
 
-        /* Títulos con Bebas Neue */
         h1, h2, h3, h4, .btn { 
             font-family: 'Bebas Neue', cursive; 
             letter-spacing: 2px;
@@ -44,18 +42,8 @@
             padding: 20px;
         }
 
-        .logo-header {
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 25px;
-        }
-
-        .logo-footer {
-            max-width: 150px;
-            height: auto;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
+        .logo-header { max-width: 400px; height: auto; margin-bottom: 25px; }
+        .logo-footer { max-width: 150px; height: auto; margin-bottom: 20px; opacity: 0.9; }
 
         header h1 { font-size: clamp(3rem, 10vw, 5rem); margin-bottom: 1rem; }
         header p { font-size: 1.4rem; max-width: 600px; margin-bottom: 2rem; font-weight: 300; }
@@ -90,14 +78,45 @@
         .card ul li { margin-bottom: 8px; position: relative; padding-left: 20px; }
         .card ul li::before { content: "•"; color: var(--primario); position: absolute; left: 0; font-weight: bold; }
 
-        .portfolio-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 10px; 
-            margin-top: 20px; 
+        /* --- ESTILOS DEL CARRUSEL --- */
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto 0;
+            overflow: hidden;
+            background: #eee;
         }
-        .portfolio-item { height: 350px; background-size: cover; background-position: center; transition: 0.5s; filter: grayscale(100%); }
-        .portfolio-item:hover { filter: grayscale(0%); cursor: pointer; }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .portfolio-item {
+            min-width: 100%;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 20px 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .slider-btn:hover { background: var(--primario); }
+        .prev { left: 0; }
+        .next { right: 0; }
+        /* ---------------------------- */
 
         .tech-section { background: #111; color: #fff; padding: 80px 10%; text-align: center; }
         .tech-grid { 
@@ -118,7 +137,7 @@
 
         @media (max-width: 600px) {
             .section, .tech-section { padding: 60px 5%; }
-            header h1 { letter-spacing: 2px; }
+            .portfolio-item { height: 300px; }
             .logo-header { max-width: 250px; }
         }
     </style>
@@ -195,10 +214,14 @@
 
     <section class="section" style="background: var(--secundario);">
         <h2>Proyectos Recientes</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800');"></div>
-            <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800');"></div>
-            <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35097?auto=format&fit=crop&q=80&w=800');"></div>
+        <div class="slider-container">
+            <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+            <div class="slider" id="slider">
+                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200');"></div>
+                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200');"></div>
+                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35097?auto=format&fit=crop&q=80&w=1200');"></div>
+            </div>
+            <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button>
         </div>
     </section>
 
@@ -215,6 +238,25 @@
         </div>
         <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">© 2026 Integra Arquitectos. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slider = document.getElementById('slider');
+        const slides = document.querySelectorAll('.portfolio-item');
+
+        function moveSlide(direction) {
+            currentSlide += direction;
+            
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = slides.length - 1;
+            }
+            
+            const offset = -currentSlide * 100;
+            slider.style.transform = `translateX(${offset}%)`;
+        }
+    </script>
 
 </body>
 </html>
