@@ -78,10 +78,10 @@
         .card ul li { margin-bottom: 8px; position: relative; padding-left: 20px; }
         .card ul li::before { content: "•"; color: var(--primario); position: absolute; left: 0; font-weight: bold; }
 
-        /* --- ESTILOS DEL CARRUSEL --- */
+        /* --- ESTILOS DEL CARRUSEL DE PANELES --- */
         .slider-container {
             position: relative;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 40px auto 0;
             overflow: hidden;
         }
@@ -91,9 +91,17 @@
             transition: transform 0.5s ease-in-out;
         }
 
-        .portfolio-item {
+        .project-panel {
             min-width: 100%;
-            height: 550px;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 500px;
             background-size: cover;
             background-position: center;
             position: relative;
@@ -102,14 +110,13 @@
             justify-content: center;
         }
 
-        /* Capa de Gris y Título */
         .portfolio-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(40, 40, 40, 0.7); /* Filtro gris/oscuro */
+            background: rgba(40, 40, 40, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -124,19 +131,33 @@
             transition: 0.4s ease;
         }
 
-        /* Al pasar el mouse: se quita el gris y se oculta el título */
-        .slider-container:hover .portfolio-overlay {
-            background: rgba(0, 0, 0, 0);
+        .project-panel:hover .portfolio-overlay { background: rgba(0, 0, 0, 0); }
+        .project-panel:hover .portfolio-overlay h3 { opacity: 0; transform: scale(1.1); }
+
+        /* Ficha técnica del proyecto (Igual que los otros paneles) */
+        .project-details {
+            padding: 30px;
+            text-align: left;
+            background: var(--secundario);
         }
 
-        .slider-container:hover .portfolio-overlay h3 {
-            opacity: 0;
-            transform: scale(1.1);
+        .project-details h4 {
+            font-size: 1.8rem;
+            color: var(--primario);
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--primario);
+            display: inline-block;
+        }
+
+        .project-details p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
         }
 
         .slider-btn {
             position: absolute;
-            top: 50%;
+            top: 40%; /* Ajustado para centrarse en la imagen */
             transform: translateY(-50%);
             background: rgba(0,0,0,0.5);
             color: white;
@@ -151,6 +172,7 @@
         .slider-btn:hover { background: var(--primario); }
         .prev { left: 0; }
         .next { right: 0; }
+
         /* ---------------------------- */
 
         .tech-section { background: #111; color: #fff; padding: 80px 10%; text-align: center; }
@@ -172,9 +194,8 @@
 
         @media (max-width: 600px) {
             .section, .tech-section { padding: 60px 5%; }
-            .portfolio-item { height: 350px; }
+            .project-image { height: 300px; }
             .portfolio-overlay h3 { font-size: 2.5rem; }
-            .logo-header { max-width: 250px; }
         }
     </style>
 </head>
@@ -226,9 +247,52 @@
         </div>
     </section>
 
+    <section class="section" style="background: #fff;">
+        <h2>Proyectos Recientes</h2>
+        <div class="slider-container">
+            <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+            <div class="slider" id="slider">
+                
+                <div class="project-panel">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200');">
+                        <div class="portfolio-overlay"><h3>Residencia Arcos</h3></div>
+                    </div>
+                    <div class="project-details">
+                        <h4>Especificaciones Técnicas</h4>
+                        <p>Desarrollo residencial de alta gama con enfoque en la integración de luz natural y materiales pétreos.</p>
+                        <p><strong>Ubicación:</strong> CDMX | <strong>Área:</strong> 450 m²</p>
+                    </div>
+                </div>
+
+                <div class="project-panel">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200');">
+                        <div class="portfolio-overlay"><h3>Torre Integra</h3></div>
+                    </div>
+                    <div class="project-details">
+                        <h4>Ficha Técnica</h4>
+                        <p>Edificio corporativo diseñado bajo metodología BIM para optimizar la eficiencia energética.</p>
+                        <p><strong>Ubicación:</strong> Querétaro | <strong>Área:</strong> 2,800 m²</p>
+                    </div>
+                </div>
+
+                <div class="project-panel">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35097?auto=format&fit=crop&q=80&w=1200');">
+                        <div class="portfolio-overlay"><h3>Proyecto CDMX</h3></div>
+                    </div>
+                    <div class="project-details">
+                        <h4>Detalles de Obra</h4>
+                        <p>Intervención urbana y remodelación de espacios públicos con estructura de acero reforzado.</p>
+                        <p><strong>Ubicación:</strong> Valle de México | <strong>Estatus:</strong> Finalizado</p>
+                    </div>
+                </div>
+
+            </div>
+            <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </section>
+
     <section class="tech-section">
         <h2>Planos y Detalles Técnicos</h2>
-        <p style="color: #888; font-weight: 300;">Documentación técnica y precisión en cada etapa del desarrollo.</p>
         <div class="tech-grid">
             <div class="tech-card">
                 <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800" alt="Plano">
@@ -248,43 +312,21 @@
         </div>
     </section>
 
-    <section class="section" style="background: var(--secundario);">
-        <h2>Proyectos Recientes</h2>
-        <div class="slider-container">
-            <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-            <div class="slider" id="slider">
-                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200');">
-                    <div class="portfolio-overlay"><h3>Residencia Arcos</h3></div>
-                </div>
-                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200');">
-                    <div class="portfolio-overlay"><h3>Torre Integra</h3></div>
-                </div>
-                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35097?auto=format&fit=crop&q=80&w=1200');">
-                    <div class="portfolio-overlay"><h3>Proyecto CDMX</h3></div>
-                </div>
-            </div>
-            <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button>
-        </div>
-    </section>
-
     <footer id="contacto">
         <img src="logo.png" alt="Logo Integra Arquitectos" class="logo-footer">
         <h2>¿Listo para construir?</h2>
-        <p>Contáctanos para una asesoría personalizada</p>
-        <br>
         <p>info@integra-arquitectos.com | +52 55 1234 5678</p>
         <div class="socials">
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
             <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">© 2026 Integra Arquitectos. Todos los derechos reservados.</p>
     </footer>
 
     <script>
         let currentSlide = 0;
         const slider = document.getElementById('slider');
-        const slides = document.querySelectorAll('.portfolio-item');
+        const slides = document.querySelectorAll('.project-panel');
 
         function moveSlide(direction) {
             currentSlide += direction;
